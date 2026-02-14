@@ -19,6 +19,18 @@
       .hidden { display: none; }
       #feedback-container { margin-top: 20px; padding: 15px; border-top: 1px solid #eee; }
       #next-btn { background: #3498db; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
+
+      .matrix {
+        margin: 15px 0;
+        border-collapse: collapse;
+      }
+      
+      .matrix td {
+        padding: 5px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid black;
+      }
     </style>
   </head>
   <body>
@@ -57,10 +69,110 @@
           {
             image: "assets/test_1.svg",
             answers: [
-              { text: "Option 1", isCorrect: false, feedback: "For each square, sum the number of sides in each shape. After this, we can see that the total number of sides increases as you move right. Looking at the bottom row, the sum of the number of sides goes from: 10, 11, ?. Answer choice 1 sums to 13, which is not after 11. Looking back at the answer choices, the only valid answer which sums to 12 is <b>#2</b>" },
-              { text: "Option 2", isCorrect: false, feedback: "In the first row of the matrix, there is only one shape. In the second row of the matrix, there are only two shapes. In the third row of the matrix, there are only three shapes. Looking at the top left cell, we can see a triangle. That triangle also appears in the cells below. Looking at the top middle cell, we can see a square. That square also appears in the cells below. Looking at the top right cell, we can see a pentagon. That pentagon appears in the cell below, so it should also appear in the hidden cell. This means the only valid answer is <b>#3</b>(the shape in #1 is a hexagon, not a pentagon)" },
-              { text: "Option 3", isCorrect: false, feedback: "For each square, sum the number of sides in each shape. After this, we can see that the total number of sides increases as you move right. Looking at the bottom row, the sum of the number of sides goes from: 10, 11, ?. Answer choice 1 sums to 13, which is not after 11. Looking back at the answer choices, the only valid answer which sums to 12 is <b>#2</b>" },
-              { text: "Option 4", isCorrect: false, feedback: "Looking at the top left cell, we can see a triangle. That triangle also appears in the cells below. Looking at the top middle cell, we can see a square. That square also appears in the cells below. Looking at the top right cell, we can see a pentagon. That pentagon appears in the cell below, so it should also appear in the hidden cell. This means the only valid answer is <b>#3</b>(the shape in #1 is a hexagon, not a pentagon)" }
+              { text: "Option 1", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides in each cell:
+<table class="matrix">
+  <tr>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>4+3=<br>7</td>
+    <td>4+4=<br>8</td>
+    <td>4+5=<br>9</td>
+  </tr>
+  <tr>
+    <td>3+3+4=<br>10</td>
+    <td>4+4+3=<br>11</td>
+    <td>?</td>
+  </tr>
+</table>
+Looking at this table, we can see that the total number of sides increases as you move right. Looking at the bottom row, we can see that the number on the question mark should be 12. This means we need to find shapes whose sides sum to 12. Let's list out the total number of sides for each option:
+<ol>
+<li>13 total sides</li>
+<li>12 total sides</li>
+<li>13 total sides</li>
+<li>0 total sides</li>
+</ol>
+The only pattern that has 12 total sides is <b>Option #2</b>` },
+              { text: "Option 2", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides for every shape in each row, underlining any new shapes that appear relative to the cell above it.
+<table class="matrix">
+  <tr>
+    <td><u>3</u></td>
+    <td><u>4</u></td>
+    <td><u>5</u></td>
+  </tr>
+  <tr>
+    <td><u>4</u> + 3</td>
+    <td>4 + <u>4</u></td>
+    <td><u>4</u> + 5</td>
+  </tr>
+  <tr>
+    <td><u>3</u> + 3 + 4</td>
+    <td>4 + 4 + <u>3</u></td>
+    <td>?</td>
+  </tr>
+</table>
+As you can see, every cell contains all the shapes above it. In order for the question mark to match this pattern, it must contain at least a 4 sided shape and a 5 sided shape.
+<ol>
+<li>#1 contains a 3, 4, and 6 sided shape. It does not meet the criteria</li>
+<li>#2 contains two 6 sided shapes. It does not meet the criteria</li>
+<li>#3 contains a 5 sided shape and two 4 sided shapes. It <u>does</u> meet the criteria</li>
+<li>#4 contains three 0 sided shapes. It does not meet the criteria</li>
+</ol>
+<b>#3 is the correct answer</b>` },
+              { text: "Option 3", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides in each cell:
+<table class="matrix">
+  <tr>
+    <td>3</td>
+    <td>4</td>
+    <td>5</td>
+  </tr>
+  <tr>
+    <td>4+3=<br>7</td>
+    <td>4+4=<br>8</td>
+    <td>4+5=<br>9</td>
+  </tr>
+  <tr>
+    <td>3+3+4=<br>10</td>
+    <td>4+4+3=<br>11</td>
+    <td>?</td>
+  </tr>
+</table>
+Looking at this table, we can see that the total number of sides increases as you move right. Looking at the bottom row, we can see that the number on the question mark should be 12. This means we need to find shapes whose sides sum to 12. Let's list out the total number of sides for each option:
+<ol>
+<li>13 total sides</li>
+<li>12 total sides</li>
+<li>13 total sides</li>
+<li>0 total sides</li>
+</ol>
+The only pattern that has 12 total sides is <b>Option #2</b>` },
+              { text: "Option 4", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides for every shape in each row, underlining any new shapes that appear relative to the cell above it.
+<table class="matrix">
+  <tr>
+    <td><u>3</u></td>
+    <td><u>4</u></td>
+    <td><u>5</u></td>
+  </tr>
+  <tr>
+    <td><u>4</u> + 3</td>
+    <td>4 + <u>4</u></td>
+    <td><u>4</u> + 5</td>
+  </tr>
+  <tr>
+    <td><u>3</u> + 3 + 4</td>
+    <td>4 + 4 + <u>3</u></td>
+    <td>?</td>
+  </tr>
+</table>
+As you can see, every cell contains all the shapes above it. In order for the question mark to match this pattern, it must contain at least a 4 sided shape and a 5 sided shape.
+<ol>
+<li>#1 contains a 3, 4, and 6 sided shape. It does not meet the criteria</li>
+<li>#2 contains two 6 sided shapes. It does not meet the criteria</li>
+<li>#3 contains a 5 sided shape and two 4 sided shapes. It <u>does</u> meet the criteria</li>
+<li>#4 contains three 0 sided shapes. It does not meet the criteria</li>
+</ol>
+<b>#3 is the correct answer</b>` }
             ]
           },
           {
