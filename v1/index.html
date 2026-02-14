@@ -178,10 +178,182 @@ As you can see, every cell contains all the shapes above it. In order for the qu
           {
             image: "assets/test_2.svg",
             answers: [
-              { text: "Option 1", isCorrect: false, feedback: "You correctly identified the fibonacci sequence in this sequence, but you failed to account for the patterns of the square and circle. The square had a repeating pattern of: right, left, center and the circle had a repeating pattern of center, center, right. The correct ending square should have a square in the center and a circle on the right. The only pattern that accounts for both the fibonacci sequence and the square-circle pattern is <b>#3</b>" },
-              { text: "Option 2", isCorrect: false, feedback: "The number of stars in each sequence is equal to the sum of the previous two. This eliminates #2 and #4 and leaves us with #1 and #3. In all 5 given tiles, the square and circle are always touching(diagonals counting). In #3, the square and circle are not touching, which leaves <b>#1</b> as the only correct answer." },
-              { text: "Option 3", isCorrect: false, feedback: "You correctly identified the fibonacci sequence in this sequence, but you failed to account for the patterns of the square and circle. In all 5 given tiles, the square and circle are always touching(diagonals counting). The only tile that has the square and circle are not touching while accounting for the fibonacci sequence is <b>#1</b>" },
-              { text: "Option 4", isCorrect: false, feedback: "You kind of identified the placement patterns of the square and circle, but if you look closely, the circle has been alternating between center and bottom, which means at the last cell, the circle must be placed at the bottom. This leaves only #2 and #3 valid options. In all 5 given tiles, the square and circle are always touching(diagonals counting). The only tile that has the square and circle are not touching is <b>#2</b>" }
+              { text: "Option 1", isCorrect: false, feedback: `<style>
+  .matrix {
+    margin: 15px 0;
+    border-collapse: collapse;
+  }
+  
+  .matrix td {
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+  }
+</style>
+
+Your answer is incorrect. Let's focus on the position of the square:
+<table class="matrix">
+  <tr>
+    <td>Right</td>
+    <td>Left</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Left</td>
+    <td>?????</td>
+  </tr>
+</table>
+Now let's focus on the position of the circle:
+<table class="matrix">
+  <tr>
+    <td>Center</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Center</td>
+    <td>Center</td>
+    <td>?????</td>
+  </tr>
+</table>
+As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
+Now let's count the number of stars in each cell:
+<table class="matrix">
+  <tr>
+    <td>1 star</td>
+    <td>1 star</td>
+    <td>2 stars</td>
+    <td>3 stars</td>
+    <td>5 stars</td>
+    <td>? stars</td>
+  </tr>
+</table>
+The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
+Let's look at each answer choice:
+<ol>
+<li>The square and circle don't seem to be positioned anywhere. This is incorrect</li>
+<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
+<li>The square is in the center, and the circle is on the right. This is correct. It also has 8 stars, making it the correct answer.</li>
+<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
+</ol>
+<b>#3 is the correct answer</b>` },
+              { text: "Option 2", isCorrect: false, feedback: `Your answer is incorrect. Let's focus on the position of the square:
+<table class="matrix">
+  <tr>
+    <td>Right</td>
+    <td>Left</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Left</td>
+    <td>?????</td>
+  </tr>
+</table>
+Now let's focus on the position of the circle:
+<table class="matrix">
+  <tr>
+    <td>Center</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Center</td>
+    <td>Center</td>
+    <td>?????</td>
+  </tr>
+</table>
+Now let's count the number of stars in each cell:
+<table class="matrix">
+  <tr>
+    <td>1 star</td>
+    <td>1 star</td>
+    <td>2 stars</td>
+    <td>3 stars</td>
+    <td>5 stars</td>
+    <td>? stars</td>
+  </tr>
+</table>
+As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
+The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
+Let's analyze the number of stars in each answer choice
+<ol>
+  <li>8 stars. Correct. However, the square is not in the center and the circle is not on the right, making this incorrect.</li>
+  <li>7 stars. Incorrect.</li>
+  <li>8 stars. Correct.</li>
+  <li>4 stars. Incorrect.</li>
+</ol>
+<b>The correct answer is #3</b>` },
+              { text: "Option 3", isCorrect: false, feedback: `Your answer is incorrect. In all given cells, the circle and square are always touching (diagonals included.) This eliminates answer choice #3. Let's count the number of stars in each cell:
+<table class="matrix">
+  <tr>
+    <td>1 star</td>
+    <td>1 star</td>
+    <td>2 stars</td>
+    <td>3 stars</td>
+    <td>5 stars</td>
+    <td>? stars</td>
+  </tr>
+</table>
+As you can see, the number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.
+<ol>
+  <li>8 stars. Correct.</li>
+  <li>7 stars. Incorrect.</li>
+  <li>Eliminated (circle and square are not touching)</li>
+  <li>4 stars. Incorrect.</li>
+</ol>
+<b>#1 is the correct answer</b>` },
+              { text: "Option 4", isCorrect: false, feedback: `<style>
+  .matrix {
+    margin: 15px 0;
+    border-collapse: collapse;
+  }
+  
+  .matrix td {
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+  }
+</style>
+
+Your answer is incorrect. Let's focus on the position of the square:
+<table class="matrix">
+  <tr>
+    <td>Right</td>
+    <td>Left</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Left</td>
+    <td>?????</td>
+  </tr>
+</table>
+Now let's focus on the position of the circle:
+<table class="matrix">
+  <tr>
+    <td>Center</td>
+    <td>Center</td>
+    <td>Right</td>
+    <td>Center</td>
+    <td>Center</td>
+    <td>?????</td>
+  </tr>
+</table>
+As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
+Now let's count the number of stars in each cell:
+<table class="matrix">
+  <tr>
+    <td>1 star</td>
+    <td>1 star</td>
+    <td>2 stars</td>
+    <td>3 stars</td>
+    <td>5 stars</td>
+    <td>? stars</td>
+  </tr>
+</table>
+The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
+Let's look at each answer choice:
+<ol>
+<li>The square and circle don't seem to be positioned anywhere. This is incorrect</li>
+<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
+<li>The square is in the center, and the circle is on the right. This is correct. It also has 8 stars, making it the correct answer.</li>
+<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
+</ol>
+<b>#3 is the correct answer</b>` }
             ]
           },
           {
