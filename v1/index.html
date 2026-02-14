@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script>let Q187235=true;addEventListener("error",(e)=>{if(Q187235){Q187235=false;alert(e.message)}})</script>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -30,6 +31,12 @@
         text-align: center;
         vertical-align: middle;
         border: 1px solid black;
+      }
+      td.fill-black {
+        background-color: #000;
+      }
+      td.fill-gray {
+        background-color: #999;
       }
     </style>
   </head>
@@ -73,38 +80,26 @@
         },
         wiki: `A cellular automaton consists of a regular grid of cells, each in one of a finite number of states, such as on and off (in contrast to a coupled map lattice). The grid can be in any finite number of dimensions. For each cell, a set of cells called its neighborhood is defined relative to the specified cell. An initial state (time t = 0) is selected by assigning a state for each cell. A new generation is created (advancing t by 1), according to some fixed rule (generally, a mathematical function) that determines the new state of each cell in terms of the current state of the cell and the states of the cells in its neighborhood. Typically, the rule for updating the state of cells is the same for each cell and does not change over time, and is applied to the whole grid simultaneously, though exceptions are known, such as the stochastic cellular automaton and asynchronous cellular automaton. The concept was originally conceived in the 1940s by Stanislaw Ulam and John von Neumann while they were contemporaries at Los Alamos National Laboratory. While studied by some throughout the 1950s and 1960s, it was not until the 1970s and Conway's Game of Life, a two-dimensional cellular automaton, that interest in the subject expanded beyond academia. In the 1980s, Stephen Wolfram engaged in a systematic study of one-dimensional cellular automata, or what he calls elementary cellular automata; his research assistant Matthew Cook showed that one of these rules is Turing-complete. The primary classifications of cellular automata, as outlined by Wolfram, are numbered one to four. They are, in order, automata in which patterns generally stabilize into homogeneity, automata in which patterns evolve into mostly stable or oscillating structures, automata in which patterns evolve in a seemingly chaotic fashion, and automata in which patterns become extremely complex and may last for a long time, with stable local structures. This last class is thought to be computationally universal, or capable of simulating a Turing machine. Special types of cellular automata are reversible, where only a single configuration leads directly to a subsequent one, and totalistic, in which the future value of individual cells only depends on the total value of a group of neighboring cells. Cellular automata can simulate a variety of real-world systems, including biological and chemical ones.`
       }
-      let question3Answer1to3 = `<style>.fill-black{background-color:#000}.fill-gray{background-color:#999}</style>
-<s>Wow, you suck at this! Your IQ is probably under 1,000,000,000,000<sup>1,000,000,000,000,000,000</sup>!</s><br>
-Nice try! Let's learn from this mistake so you don't make it next time!<br><br>
-You obviously already understand the fundamental principles of cellular automata, which can be found in various areas including physics, theoretical biology, and microstructure modeling. As a <i>tiny</i> review, <br><br><small>${q3Tables.wiki}</small><br><br>
-Great! Now that you have a good understanding of cellular automation, we can map the diamonds, triangles, and circles to live cells, and the squares, stars, and nothing to dead cells. Using the standard rule for conway's game of life(B3/S23), we can now see that the matrix matches the first 8 steps of conway's game of life perfectly:
-${q3Tables.matrix.life}
-
-Using the rules of conway's game of life, we can expect that the last cell will look like this:
-
-<table class="matrix"><tr><td><td><td><td><tr><td><td><td><td><tr><td><td><td class="fill-black"><td class="fill-black"><tr><td><td><td class="fill-black"><td class="fill-black"></table>
-
-Now, let's see what each option looks like when we map the diamonds, triangles, and circles to live cells, and map the squares, stars, and nothing to dead cells:
-
-${q3Tables.options.life}
-
-Only options 1 and 4 meet this.
-
-Let's look at the other pattern here. We will display all shapes as gray, and empty spots as white. If there are 4 vertically stacked cells, we will color them all black instead:
-${q3Tables.matrix.stacking}
-Here is a list of all four options with any 4 vertically stacked cells colored black:
-
-${q3Tables.options.stacking}
-
-We can analyze the pattern per column.<br>
-In the left column:<br>
-The first(top) row has 4 vertically stacked cells in the first(left) column. In the second row, the black cells are in the third column. The last row has black cells in between the 1st and 3rd column(the 2nd column)<br>
-In the center column:<br>
-The first row has black cells in the 4th column. The second row has black cells in the 2nd column. The last row has black cells in the 3rd column, in between the 2nd and 4th column.<br>
-In the right column:<br>
-The first row has black cells in the 1st column. The second row has black cells in the 3rd column. We can assume that the last row will have black cells in the 2nd column.<br>
-Options 2 and 4 match this description.<br>
-Since 1 and 4 were valid options according to conway's game of life, <b>#4 is the correct answer</b>`
+      
+ 	  let tests = {
+        1: {
+          ver1: `Your answer is incorrect. Let's count the number of sides in each cell:\n<table class="matrix">\n  <tr>\n    <td>3</td>\n    <td>4</td>\n    <td>5</td>\n  </tr>\n  <tr>\n    <td>4+3=<br>7</td>\n    <td>4+4=<br>8</td>\n    <td>4+5=<br>9</td>\n  </tr>\n  <tr>\n    <td>3+3+4=<br>10</td>\n    <td>4+4+3=<br>11</td>\n    <td>?</td>\n  </tr>\n</table>\nLooking at this table, we can see that the total number of sides increases as you move right. Looking at the bottom row, we can see that the number on the question mark should be 12. This means we need to find shapes whose sides sum to 12. Let's list out the total number of sides for each option:\n<ol>\n<li>13 total sides</li>\n<li>12 total sides</li>\n<li>13 total sides</li>\n<li>0 total sides</li>\n</ol>\nThe only pattern that has 12 total sides is <b>Option #2</b>`,
+          ver2: `Your answer is incorrect. Let's count the number of sides for every shape in each row, underlining any new shapes that appear relative to the cell above it.\n<table class="matrix">\n  <tr>\n    <td><u>3</u></td>\n    <td><u>4</u></td>\n    <td><u>5</u></td>\n  </tr>\n  <tr>\n    <td><u>4</u> + 3</td>\n    <td>4 + <u>4</u></td>\n    <td><u>4</u> + 5</td>\n  </tr>\n  <tr>\n    <td><u>3</u> + 3 + 4</td>\n    <td>4 + 4 + <u>3</u></td>\n    <td>?</td>\n  </tr>\n</table>\nAs you can see, every cell contains all the shapes above it. In order for the question mark to match this pattern, it must contain at least a 4 sided shape and a 5 sided shape.\n<ol>\n<li>#1 contains a 3, 4, and 6 sided shape. It does not meet the criteria</li>\n<li>#2 contains two 6 sided shapes. It does not meet the criteria</li>\n<li>#3 contains a 5 sided shape and two 4 sided shapes. It <u>does</u> meet the criteria</li>\n<li>#4 contains three 0 sided shapes. It does not meet the criteria</li>\n</ol>\n<b>#3 is the correct answer</b>`
+        },
+        2: {
+          ver1: `Your answer is incorrect. Let's focus on the position of the square:\n<table class="matrix">\n  <tr>\n    <td>Right</td>\n    <td>Left</td>\n    <td>Center</td>\n    <td>Right</td>\n    <td>Left</td>\n    <td>?????</td>\n  </tr>\n</table>\nNow let's focus on the position of the circle:\n<table class="matrix">\n  <tr>\n    <td>Center</td>\n    <td>Center</td>\n    <td>Right</td>\n    <td>Center</td>\n    <td>Center</td>\n    <td>?????</td>\n  </tr>\n</table>\nAs you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>\nNow let's count the number of stars in each cell:\n<table class="matrix">\n  <tr>\n    <td>1 star</td>\n    <td>1 star</td>\n    <td>2 stars</td>\n    <td>3 stars</td>\n    <td>5 stars</td>\n    <td>? stars</td>\n  </tr>\n</table>\nThe number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>\nLet's look at each answer choice:\n<ol>\n<li>The square and circle don't seem to be positioned anywhere. This is incorrect</li>\n<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>\n<li>The square is in the center, and the circle is on the right. This is correct. It also has 8 stars, making it the correct answer.</li>\n<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>\n</ol>\n<b>#3 is the correct answer</b>`,
+          ver2: `Your answer is incorrect. Let's focus on the position of the square:\n<table class="matrix">\n  <tr>\n    <td>Right</td>\n    <td>Left</td>\n    <td>Center</td>\n    <td>Right</td>\n    <td>Left</td>\n    <td>?????</td>\n  </tr>\n</table>\nNow let's focus on the position of the circle:\n<table class="matrix">\n  <tr>\n    <td>Center</td>\n    <td>Center</td>\n    <td>Right</td>\n    <td>Center</td>\n    <td>Center</td>\n    <td>?????</td>\n  </tr>\n</table>\nNow let's count the number of stars in each cell:\n<table class="matrix">\n  <tr>\n    <td>1 star</td>\n    <td>1 star</td>\n    <td>2 stars</td>\n    <td>3 stars</td>\n    <td>5 stars</td>\n    <td>? stars</td>\n  </tr>\n</table>\nAs you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>\nThe number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>\nLet's analyze the number of stars in each answer choice\n<ol>\n  <li>8 stars. Correct. However, the square is not in the center and the circle is not on the right, making this incorrect.</li>\n  <li>7 stars. Incorrect.</li>\n  <li>8 stars. Correct.</li>\n  <li>4 stars. Incorrect.</li>\n</ol>\n<b>The correct answer is #3</b>`,
+          ver3: `Your answer is incorrect. In all given cells, the circle and square are always touching (diagonals included.) This eliminates answer choice #3. Let's count the number of stars in each cell:\n<table class="matrix">\n  <tr>\n    <td>1 star</td>\n    <td>1 star</td>\n    <td>2 stars</td>\n    <td>3 stars</td>\n    <td>5 stars</td>\n    <td>? stars</td>\n  </tr>\n</table>\nAs you can see, the number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.\n<ol>\n  <li>8 stars. Correct.</li>\n  <li>7 stars. Incorrect.</li>\n  <li>Eliminated (circle and square are not touching)</li>\n  <li>4 stars. Incorrect.</li>\n</ol>\n<b>#1 is the correct answer</b>`
+        },
+        3: {
+          ver1: `<s>Wow, you suck at this! Your IQ is probably under 1,000,000,000,000<sup>1,000,000,000,000,000,000</sup>!</s><br>\nNice try! Let's learn from this mistake so you don't make it next time!<br><br>\nYou obviously already understand the fundamental principles of cellular automata, which can be found in various areas including physics, theoretical biology, and microstructure modeling. As a <i>tiny</i> review, <br><br><small>${q3Tables.wiki}</small><br><br>\nGreat! Now that you have a good understanding of cellular automation, we can map the diamonds, triangles, and circles to live cells, and the squares, stars, and nothing to dead cells. Using the standard rule for conway's game of life(B3/S23), we can now see that the matrix matches the first 8 steps of conway's game of life perfectly:\n${q3Tables.matrix.life}\n\nUsing the rules of conway's game of life, we can expect that the last cell will look like this:\n\n<table class="matrix"><tr><td><td><td><td><tr><td><td><td><td><tr><td><td><td class="fill-black"><td class="fill-black"><tr><td><td><td class="fill-black"><td class="fill-black"></table>\n\nNow, let's see what each option looks like when we map the diamonds, triangles, and circles to live cells, and map the squares, stars, and nothing to dead cells:\n\n${q3Tables.options.life}\n\nOnly options 1 and 4 meet this.\n\nLet's look at the other pattern here. We will display all shapes as gray, and empty spots as white. If there are 4 vertically stacked cells, we will color them all black instead:\n${q3Tables.matrix.stacking}\nHere is a list of all four options with any 4 vertically stacked cells colored black:\n\n${q3Tables.options.stacking}\n\nWe can analyze the pattern per column.<br>\nIn the left column:<br>\nThe first(top) row has 4 vertically stacked cells in the first(left) column. In the second row, the black cells are in the third column. The last row has black cells in between the 1st and 3rd column(the 2nd column)<br>\nIn the center column:<br>\nThe first row has black cells in the 4th column. The second row has black cells in the 2nd column. The last row has black cells in the 3rd column, in between the 2nd and 4th column.<br>\nIn the right column:<br>\nThe first row has black cells in the 1st column. The second row has black cells in the 3rd column. We can assume that the last row will have black cells in the 2nd column.<br>\nOptions 2 and 4 match this description.<br>\nSince 1 and 4 were valid options according to conway's game of life, <b>#4 is the correct answer</b>`,
+          ver2: `You obviously have prior knowledge of the fundamental principles of cellular automata, which can be found in various areas including physics, theoretical biology, and microstructure modeling. As a <i>tiny</i> review, <br><br><small>${q3Tables.wiki}</small><br><br>\nGreat! Now that you have a good understanding of cellular automation, we can map the diamonds, triangles, and circles to live cells, and the squares, stars, and nothing to dead cells. Using the standard rule for conway's game of life(B3/S23), we can now see that the matrix matches the first 8 steps of conway's game of life perfectly:\n${q3Tables.matrix.life}\n\nUsing the rules of conway's game of life, we can expect that the last cell will look like this:\n\n<table class="matrix"><tr><td><td><td><td><tr><td><td><td><td><tr><td><td><td class="fill-black"><td class="fill-black"><tr><td><td><td class="fill-black"><td class="fill-black"></table>\n\nNow, let's see what each option looks like when we map the diamonds, triangles, and circles to live cells, and map the squares, stars, and nothing to dead cells:\n\n${q3Tables.options.life}\n\nOnly options 1 and 4 are valid.<br>\n\nLet's look at the shapes in every square. We can see that every single square will contain at least one diamond, star, square, triangle, and circle.<br>\n\nOption 4 only contains stars and diamonds, meaning it is incorrect<br>\nOption 1 contains at least one diamond, star, square, triangle, circle, meaning it is correct <br>\n<b>#1 is the correct answer</b>`
+        },
+        4: {
+          ver1: `Your answer is incorrect. There are multiple patterns occuring in this test.<br> Let's count the number of squares in each tile:\n<table class="matrix">\n  <tr>\n    <td>5</td>\n    <td>4</td>\n    <td>3</td>\n    <td>2</td>\n    <td>?</td>\n  </tr>\n</table>\nWhen we get to the last cell, we expect only 1 square to be left. Only #1, #2, and #4 have 1 square.<br><br>\nNow let's count the triangles:\n<table class="matrix">\n  <tr>\n    <td>2</td>\n    <td>3</td>\n    <td>5</td>\n    <td>7</td>\n    <td>?</td>\n  </tr>\n</table>\nThese are all prime numbers, so we expect the last cell to contain 11 triangles. Only #1, #2, and #4 have 11 triangles.<br><br>\nNow let's count the circles:\n<table class="matrix">\n  <tr>\n    <td>3</td>\n    <td>1</td>\n    <td>4</td>\n    <td>1</td>\n    <td>?</td>\n  </tr>\n</table>\nThese are the first 4 digits of pi, so we can expect the next digit to be 5. Only #1 and #4 have 5 circles.<br><br>\nIn every cell, all the triangles are always pointing at a square. #1 does not follow this rule, meaning that <b>#4 is the correct answer</b>`,
+          ver2: `Your answer is incorrect. There are multiple patterns occuring in this test.<br> Let's count the number of squares in each tile:\n<table class="matrix">\n  <tr>\n    <td>5</td>\n    <td>4</td>\n    <td>3</td>\n    <td>2</td>\n    <td>?</td>\n  </tr>\n</table>\nWhen we get to the last cell, we expect only 1 square to be left. Only #1, #2, and #4 have 1 square.<br><br>\nNow let's count the triangles:\n<table class="matrix">\n  <tr>\n    <td>2</td>\n    <td>3</td>\n    <td>5</td>\n    <td>7</td>\n    <td>?</td>\n  </tr>\n</table>\nThese are all prime numbers, so we expect the last cell to contain 11 triangles. Only #1, #2, and #4 have 11 triangles.<br><br>\nNow let's count the circles:\n<table class="matrix">\n  <tr>\n    <td>3</td>\n    <td>1</td>\n    <td>4</td>\n    <td>1</td>\n    <td>?</td>\n  </tr>\n</table>\nThese are the first 4 digits of pi, so we can expect the next digit to be 5. Only #1 and #4 have 5 circles.<br><br>\n#4 can be quickly eliminated. Here are some reasons why:\n<ul>\n  <li>Huge circles: there are 5 oversized circles. These do not appear in any other cells</li>\n  <li>Perfectly aligned triangles: there is a series of 11 aligned triangles in a row. These do not appear in any other cells</li>\n  <li>Triangles have the same orientation: none of the triangles have been rotated since they are all just pointing at the square in the corner</li>\n  <li>Triangles have the same size: all of the triangles are the exact same size. All of the other cells have triangles with varying sizes</li>\n  <li>Evenly spaced triangles: all of the triangles are evenly spaced apart. This does not appear in any other cells</li>\n</ul>\nThis means that <b>#1 is the correct answer</b>`
+        }
+      }
       // --- DEVELOPER CONFIGURATION AREA ---
       const quizConfig = {
         title: "Secure Centrix81 IQ Test",
@@ -112,318 +107,37 @@ Since 1 and 4 were valid options according to conway's game of life, <b>#4 is th
           {
             image: "assets/test_1.svg",
             answers: [
-              { text: "Option 1", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides in each cell:
-<table class="matrix">
-  <tr>
-    <td>3</td>
-    <td>4</td>
-    <td>5</td>
-  </tr>
-  <tr>
-    <td>4+3=<br>7</td>
-    <td>4+4=<br>8</td>
-    <td>4+5=<br>9</td>
-  </tr>
-  <tr>
-    <td>3+3+4=<br>10</td>
-    <td>4+4+3=<br>11</td>
-    <td>?</td>
-  </tr>
-</table>
-Looking at this table, we can see that the total number of sides increases as you move right. Looking at the bottom row, we can see that the number on the question mark should be 12. This means we need to find shapes whose sides sum to 12. Let's list out the total number of sides for each option:
-<ol>
-<li>13 total sides</li>
-<li>12 total sides</li>
-<li>13 total sides</li>
-<li>0 total sides</li>
-</ol>
-The only pattern that has 12 total sides is <b>Option #2</b>` },
-              { text: "Option 2", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides for every shape in each row, underlining any new shapes that appear relative to the cell above it.
-<table class="matrix">
-  <tr>
-    <td><u>3</u></td>
-    <td><u>4</u></td>
-    <td><u>5</u></td>
-  </tr>
-  <tr>
-    <td><u>4</u> + 3</td>
-    <td>4 + <u>4</u></td>
-    <td><u>4</u> + 5</td>
-  </tr>
-  <tr>
-    <td><u>3</u> + 3 + 4</td>
-    <td>4 + 4 + <u>3</u></td>
-    <td>?</td>
-  </tr>
-</table>
-As you can see, every cell contains all the shapes above it. In order for the question mark to match this pattern, it must contain at least a 4 sided shape and a 5 sided shape.
-<ol>
-<li>#1 contains a 3, 4, and 6 sided shape. It does not meet the criteria</li>
-<li>#2 contains two 6 sided shapes. It does not meet the criteria</li>
-<li>#3 contains a 5 sided shape and two 4 sided shapes. It <u>does</u> meet the criteria</li>
-<li>#4 contains three 0 sided shapes. It does not meet the criteria</li>
-</ol>
-<b>#3 is the correct answer</b>` },
-              { text: "Option 3", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides in each cell:
-<table class="matrix">
-  <tr>
-    <td>3</td>
-    <td>4</td>
-    <td>5</td>
-  </tr>
-  <tr>
-    <td>4+3=<br>7</td>
-    <td>4+4=<br>8</td>
-    <td>4+5=<br>9</td>
-  </tr>
-  <tr>
-    <td>3+3+4=<br>10</td>
-    <td>4+4+3=<br>11</td>
-    <td>?</td>
-  </tr>
-</table>
-Looking at this table, we can see that the total number of sides increases as you move right. Looking at the bottom row, we can see that the number on the question mark should be 12. This means we need to find shapes whose sides sum to 12. Let's list out the total number of sides for each option:
-<ol>
-<li>13 total sides</li>
-<li>12 total sides</li>
-<li>13 total sides</li>
-<li>0 total sides</li>
-</ol>
-The only pattern that has 12 total sides is <b>Option #2</b>` },
-              { text: "Option 4", isCorrect: false, feedback: `Your answer is incorrect. Let's count the number of sides for every shape in each row, underlining any new shapes that appear relative to the cell above it.
-<table class="matrix">
-  <tr>
-    <td><u>3</u></td>
-    <td><u>4</u></td>
-    <td><u>5</u></td>
-  </tr>
-  <tr>
-    <td><u>4</u> + 3</td>
-    <td>4 + <u>4</u></td>
-    <td><u>4</u> + 5</td>
-  </tr>
-  <tr>
-    <td><u>3</u> + 3 + 4</td>
-    <td>4 + 4 + <u>3</u></td>
-    <td>?</td>
-  </tr>
-</table>
-As you can see, every cell contains all the shapes above it. In order for the question mark to match this pattern, it must contain at least a 4 sided shape and a 5 sided shape.
-<ol>
-<li>#1 contains a 3, 4, and 6 sided shape. It does not meet the criteria</li>
-<li>#2 contains two 6 sided shapes. It does not meet the criteria</li>
-<li>#3 contains a 5 sided shape and two 4 sided shapes. It <u>does</u> meet the criteria</li>
-<li>#4 contains three 0 sided shapes. It does not meet the criteria</li>
-</ol>
-<b>#3 is the correct answer</b>` }
+              { text: "Option 1", isCorrect: false, feedback: tests[1].ver1 },
+              { text: "Option 2", isCorrect: false, feedback: tests[1].ver2 },
+              { text: "Option 3", isCorrect: false, feedback: tests[1].ver1 },
+              { text: "Option 4", isCorrect: false, feedback: tests[1].ver2 }
             ]
           },
           {
             image: "assets/test_2.svg",
             answers: [
-              { text: "Option 1", isCorrect: false, feedback: `<style>
-  .matrix {
-    margin: 15px 0;
-    border-collapse: collapse;
-  }
-  
-  .matrix td {
-    padding: 5px;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid black;
-  }
-</style>
-
-Your answer is incorrect. Let's focus on the position of the square:
-<table class="matrix">
-  <tr>
-    <td>Right</td>
-    <td>Left</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Left</td>
-    <td>?????</td>
-  </tr>
-</table>
-Now let's focus on the position of the circle:
-<table class="matrix">
-  <tr>
-    <td>Center</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Center</td>
-    <td>Center</td>
-    <td>?????</td>
-  </tr>
-</table>
-As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
-Now let's count the number of stars in each cell:
-<table class="matrix">
-  <tr>
-    <td>1 star</td>
-    <td>1 star</td>
-    <td>2 stars</td>
-    <td>3 stars</td>
-    <td>5 stars</td>
-    <td>? stars</td>
-  </tr>
-</table>
-The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
-Let's look at each answer choice:
-<ol>
-<li>The square and circle don't seem to be positioned anywhere. This is incorrect</li>
-<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
-<li>The square is in the center, and the circle is on the right. This is correct. It also has 8 stars, making it the correct answer.</li>
-<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
-</ol>
-<b>#3 is the correct answer</b>` },
-              { text: "Option 2", isCorrect: false, feedback: `Your answer is incorrect. Let's focus on the position of the square:
-<table class="matrix">
-  <tr>
-    <td>Right</td>
-    <td>Left</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Left</td>
-    <td>?????</td>
-  </tr>
-</table>
-Now let's focus on the position of the circle:
-<table class="matrix">
-  <tr>
-    <td>Center</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Center</td>
-    <td>Center</td>
-    <td>?????</td>
-  </tr>
-</table>
-Now let's count the number of stars in each cell:
-<table class="matrix">
-  <tr>
-    <td>1 star</td>
-    <td>1 star</td>
-    <td>2 stars</td>
-    <td>3 stars</td>
-    <td>5 stars</td>
-    <td>? stars</td>
-  </tr>
-</table>
-As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
-The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
-Let's analyze the number of stars in each answer choice
-<ol>
-  <li>8 stars. Correct. However, the square is not in the center and the circle is not on the right, making this incorrect.</li>
-  <li>7 stars. Incorrect.</li>
-  <li>8 stars. Correct.</li>
-  <li>4 stars. Incorrect.</li>
-</ol>
-<b>The correct answer is #3</b>` },
-              { text: "Option 3", isCorrect: false, feedback: `Your answer is incorrect. In all given cells, the circle and square are always touching (diagonals included.) This eliminates answer choice #3. Let's count the number of stars in each cell:
-<table class="matrix">
-  <tr>
-    <td>1 star</td>
-    <td>1 star</td>
-    <td>2 stars</td>
-    <td>3 stars</td>
-    <td>5 stars</td>
-    <td>? stars</td>
-  </tr>
-</table>
-As you can see, the number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.
-<ol>
-  <li>8 stars. Correct.</li>
-  <li>7 stars. Incorrect.</li>
-  <li>Eliminated (circle and square are not touching)</li>
-  <li>4 stars. Incorrect.</li>
-</ol>
-<b>#1 is the correct answer</b>` },
-              { text: "Option 4", isCorrect: false, feedback: `<style>
-  .matrix {
-    margin: 15px 0;
-    border-collapse: collapse;
-  }
-  
-  .matrix td {
-    padding: 5px;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid black;
-  }
-</style>
-
-Your answer is incorrect. Let's focus on the position of the square:
-<table class="matrix">
-  <tr>
-    <td>Right</td>
-    <td>Left</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Left</td>
-    <td>?????</td>
-  </tr>
-</table>
-Now let's focus on the position of the circle:
-<table class="matrix">
-  <tr>
-    <td>Center</td>
-    <td>Center</td>
-    <td>Right</td>
-    <td>Center</td>
-    <td>Center</td>
-    <td>?????</td>
-  </tr>
-</table>
-As you can see, the square follows a repeating right-left-center pattern while the circle follows a center-center-right pattern. This means that the square will be in the center and the circle will be on the right for the ending pattern.<br>
-Now let's count the number of stars in each cell:
-<table class="matrix">
-  <tr>
-    <td>1 star</td>
-    <td>1 star</td>
-    <td>2 stars</td>
-    <td>3 stars</td>
-    <td>5 stars</td>
-    <td>? stars</td>
-  </tr>
-</table>
-The number of stars in each cell is equal to the sum of the previous two cells. This means that the final cell should have 8 stars.<br>
-Let's look at each answer choice:
-<ol>
-<li>The square and circle don't seem to be positioned anywhere. This is incorrect</li>
-<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
-<li>The square is in the center, and the circle is on the right. This is correct. It also has 8 stars, making it the correct answer.</li>
-<li>The square is in the center, and the circle is on the right. This is correct. However, this does not have 8 stars, making it incorrect.</li>
-</ol>
-<b>#3 is the correct answer</b>` }
+              { text: "Option 1", isCorrect: false, feedback: tests[2].ver1 },
+              { text: "Option 2", isCorrect: false, feedback: tests[2].ver2 },
+              { text: "Option 3", isCorrect: false, feedback: tests[2].ver3 },
+              { text: "Option 4", isCorrect: false, feedback: tests[2].ver1 }
+            ]
+          },
+          {
+            image: "assets/test_4.svg",
+            answers: [
+              { text: "Option 1", isCorrect: false, feedback: tests[4].ver1},
+              { text: "Option 2", isCorrect: false, feedback: tests[4].ver1},
+              { text: "Option 3", isCorrect: false, feedback: tests[4].ver1},
+              { text: "Option 4", isCorrect: false, feedback: tests[4].ver2},
             ]
           },
           {
             image: "assets/test_3.svg",
             answers: [
-              { text: "Option 1", isCorrect: false, feedback: question3Answer1to3 },
-              { text: "Option 2", isCorrect: false, feedback: question3Answer1to3 },
-              { text: "Option 3", isCorrect: false, feedback: question3Answer1to3 },
-              { text: "Option 4", isCorrect: false, feedback: `<style>.fill-black{background-color:#000}.fill-gray{background-color:#999}</style>You obviously have prior knowledge of the fundamental principles of cellular automata, which can be found in various areas including physics, theoretical biology, and microstructure modeling. As a <i>tiny</i> review, <br><br><small>${q3Tables.wiki}</small><br><br>
-Great! Now that you have a good understanding of cellular automation, we can map the diamonds, triangles, and circles to live cells, and the squares, stars, and nothing to dead cells. Using the standard rule for conway's game of life(B3/S23), we can now see that the matrix matches the first 8 steps of conway's game of life perfectly:
-${q3Tables.matrix.life}
-
-Using the rules of conway's game of life, we can expect that the last cell will look like this:
-
-<table class="matrix"><tr><td><td><td><td><tr><td><td><td><td><tr><td><td><td class="fill-black"><td class="fill-black"><tr><td><td><td class="fill-black"><td class="fill-black"></table>
-
-Now, let's see what each option looks like when we map the diamonds, triangles, and circles to live cells, and map the squares, stars, and nothing to dead cells:
-
-${q3Tables.options.life}
-
-Only options 1 and 4 are valid.<br>
-
-Let's look at the shapes in every square. We can see that every single square will contain at least one diamond, star, square, triangle, and circle.<br>
-
-Option 4 only contains stars and diamonds, meaning it is incorrect<br>
-Option 1 contains at least one diamond, star, square, triangle, circle, meaning it is correct <br>
-<b>#1 is the correct answer</b>` }
+              { text: "Option 1", isCorrect: false, feedback: tests[3].ver1 },
+              { text: "Option 2", isCorrect: false, feedback: tests[3].ver1 },
+              { text: "Option 3", isCorrect: false, feedback: tests[3].ver1 },
+              { text: "Option 4", isCorrect: false, feedback: tests[3].ver2 }
             ]
           }
         ]
